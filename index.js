@@ -13,9 +13,9 @@ const fileName = process.argv[4] || '' // 第三个参数为错误文件（错�
 // node build onlineMap为构建命令
 exec('node build onlineMap', async function () {
  // 读取错误文件的map文件
- const consumer = await new SourceMapConsumer(fs.readFileSync(`./${fileName}.js.map`, 'utf8'))
+ const consumer = await new SourceMapConsumer(fs.readFileSync(`./map/${fileName}.js.map`, 'utf8'))
 
   // 输出map的错误信息
-  const logger = consumer.originalPositionFor({ line: lineno, column: columnno })
+  const logger = consumer.originalPositionFor({ line: Number(lineno), column: Number(columnno) })
   console.log("logger", logger)
 })
